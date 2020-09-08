@@ -27,4 +27,5 @@ export default class Pokemon {
         this.types = types;
         this.created = created;
     }
+
 }
