@@ -1,39 +1,35 @@
-import React, {FunctionComponent, useState, useEffect} from 'react';
-import Pokemon from "./models/pokemon";
-import POKEMONS from "./models/mock-pokemon";
+import React, { FunctionComponent } from 'react';
+import PokemonList from "./pages/pokemon-list";
+import PokemonDetail from './pages/pokemon-detail';
+import { BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
+import PageNotFound from "./pages/page-not-found";
+import PokemonEdit from "./pages/pokemon-edit";
 
 const App: FunctionComponent = () => {
-    const [pokemons, setPokemons] = useState<Pokemon[]>([]);
 
-    useEffect(() => {
-        setPokemons(POKEMONS);
-    }, [])
+
+
 
     return (
-        <div>
-            <h1 className="center">Pokédex</h1>
-            <div className="container">
-                <div className="row">
-                    {pokemons.map(({id, name, picture, created}) => (
-                        <div className="col s6 m4" key={id}>
-                            <div className="card horizontal">
-                                <div className="card-image">
-                                    <img src={picture} alt={name}/>
-                                </div>
-                                <div className="card-stacked">
-                                    <div className="card-content">
-                                        <p>{name}</p>
-                                        <p><small>{created.toString()}</small></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    ))}
-                </div>
+        <Router>
+            <div>
+                {/* La barre de navigation commun à toutes les pages*/}
+                <nav>
+                    <div className="nav-wrapper teal">
+                        <Link to="/" className="brand-logo center">Pokédex</Link>
+                    </div>
+                </nav>
+                {/* Le système de gestion des routes de notre application */}
+                <Switch>
+                    <Route exact path="/" component={PokemonList} />
+                    <Route exact path="/pokemons" component={PokemonList} />
+                    <Route path="/pokemons/edit/:id" component={PokemonEdit} />
+                    <Route path="/pokemons/:id" component={PokemonDetail} />
+                    <Route component={PageNotFound} />
+                </Switch>
             </div>
-        </div>
+        </Router>
     )
 }
-
 
 export default App;
