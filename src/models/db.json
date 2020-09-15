@@ -135,6 +135,17 @@
         "Plante",
         "Feu"
       ]
+    },
+    {
+      "id": 1600158906964,
+      "hp": "250",
+      "cp": "80",
+      "name": "Mewtwo",
+      "picture": "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/150.png",
+      "types": [
+        "Psy",
+        "Insecte"
+      ]
     }
   ]
 }
